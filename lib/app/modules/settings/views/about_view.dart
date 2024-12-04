@@ -10,7 +10,7 @@ class AboutView extends GetView<AboutController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: text('关于微信').f18.mk,
+        title: text('settings_about'.tr).f18.mk,
       ),
       body: SingleChildScrollView(
         child: column.children([
@@ -19,7 +19,7 @@ class AboutView extends GetView<AboutController> {
             column.children([
               Icons.wechat.icon.s64.primary.mk,
               h16,
-              text('微信').f18.bold.mk,
+              text('app_name'.tr).f18.bold.mk,
               h8,
               Obx(() => text('版本 ${controller.version.value}').f14.grey.mk),
               h4,
@@ -75,4 +75,4 @@ class AboutView extends GetView<AboutController> {
       Icons.chevron_right.icon.s24.grey.mk,
     ]).click(onTap: onTap);
   }
-} 
+}

@@ -18,7 +18,7 @@ class MomentsView extends GetView<MomentsController> {
             expandedHeight: 200,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: text('朋友圈').f18.white.mk,
+              title: text('discover_moments'.tr).f18.white.mk,
               background: Stack(
                 fit: StackFit.expand,
                 children: [

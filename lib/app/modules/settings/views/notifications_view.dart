@@ -11,7 +11,7 @@ class NotificationsView extends GetView<NotificationsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: text('新消息通知').f18.mk,
+        title: text('settings_notifications'.tr).f18.mk,
       ),
       body: SingleChildScrollView(
         child: column.children([
@@ -19,7 +19,7 @@ class NotificationsView extends GetView<NotificationsController> {
           _buildSection([
             _buildMenuItem(
               icon: Icons.notifications,
-              title: '接收新消息通知',
+              title: 'notifications_receive'.tr,
               iconColor: Colors.blue,
               trailing: Obx(() => Switch(
                 value: controller.settings.value.receiveNotifications,
@@ -32,38 +32,45 @@ class NotificationsView extends GetView<NotificationsController> {
           _buildSection([
             _buildMenuItem(
               icon: Icons.visibility,
-              title: '通知显示消息详情',
+              title: 'notifications_show_detail'.tr,
               iconColor: Colors.green,
               trailing: Obx(() => Switch(
                 value: controller.settings.value.showMessageDetails,
-                onChanged: controller.toggleMessageDetails,
+                onChanged: controller.toggleShowDetails,
               )),
             ),
           ]),
 
-          // 声音
+          // 声音和振动
           _buildSection([
             _buildMenuItem(
               icon: Icons.volume_up,
-              title: '声音',
+              title: 'notifications_sound'.tr,
               iconColor: Colors.orange,
               trailing: Obx(() => Switch(
                 value: controller.settings.value.sound,
                 onChanged: controller.toggleSound,
               )),
             ),
-          ]),
-
-          // 振动
-          _buildSection([
+            h12,
             _buildMenuItem(
               icon: Icons.vibration,
-              title: '振动',
+              title: 'notifications_vibrate'.tr,
               iconColor: Colors.purple,
               trailing: Obx(() => Switch(
-                value: controller.settings.value.vibration,
-                onChanged: controller.toggleVibration,
+                value: controller.settings.value.vibrate,
+                onChanged: controller.toggleVibrate,
               )),
+            ),
+          ]),
+
+          // 测试通知
+          _buildSection([
+            _buildMenuItem(
+              icon: Icons.notifications_active,
+              title: 'notifications_test'.tr,
+              iconColor: Colors.blue,
+              onTap: () => controller.testNotification(),
             ),
           ]),
         ]),
@@ -81,14 +88,15 @@ class NotificationsView extends GetView<NotificationsController> {
   Widget _buildMenuItem({
     required IconData icon,
     required String title,
-    required Widget trailing,
-    Color iconColor = Colors.blue,
+    required Color iconColor,
+    Widget? trailing,
+    VoidCallback? onTap,
   }) {
     return row.white.p16.children([
       icon.icon.s24.color(iconColor).mk,
       w12,
       text(title).f16.expanded.mk,
-      trailing,
-    ]);
+      if (trailing != null) trailing,
+    ]).click(onTap: onTap);
   }
 }

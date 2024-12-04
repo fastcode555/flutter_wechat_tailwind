@@ -12,7 +12,7 @@ class SettingsView extends GetView<SettingsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: text('设置').f18.mk,
+        title: text('settings_title'.tr).f18.mk,
       ),
       body: SingleChildScrollView(
         child: column.children([
@@ -34,7 +34,7 @@ class SettingsView extends GetView<SettingsController> {
           // 退出登录
           _buildSection([
             row.white.p16.children([
-              text('退出登录').f16.red.expanded.mk,
+              text('settings_logout'.tr).f16.red.expanded.mk,
             ]).click(onTap: () => controller.logout()),
           ]),
         ]),
@@ -51,7 +51,7 @@ class SettingsView extends GetView<SettingsController> {
   Widget _buildSettingItem(SettingItemModel item) {
     if (item.isSwitch) {
       return row.white.p16.children([
-        text(item.title).f16.expanded.mk,
+        text(item.title.tr).f16.expanded.mk,
         Switch(
           value: item.switchValue,
           onChanged: item.onSwitchChanged,
@@ -61,10 +61,10 @@ class SettingsView extends GetView<SettingsController> {
 
     return row.white.p16.children([
       column.crossStart.expanded.children([
-        text(item.title).f16.mk,
+        text(item.title.tr).f16.mk,
         if (item.subtitle != null) ...[
           h4,
-          text(item.subtitle!).f14.grey.mk,
+          text(item.subtitle!.tr).f14.grey.mk,
         ],
       ]),
       if (item.route != null) icon(Icons.chevron_right).s24.grey.mk,

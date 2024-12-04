@@ -10,47 +10,22 @@ class LanguageView extends GetView<LanguageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: text('语言').f18.mk,
+        title: text('general_language'.tr).f18.mk,
       ),
-      body: SingleChildScrollView(
-        child: column.children([
-          _buildSection([
-            Obx(() => column.children(
-              controller.languages.map((lang) => _buildMenuItem(
-                icon: Icons.language,
-                title: lang.name,
-                iconColor: Colors.blue,
-                trailing: lang.code == controller.currentLanguage.value
-                    ? Icons.check.icon.s24.primary.mk
-                    : const SizedBox(),
-                onTap: () => controller.changeLanguage(lang.code),
-              )).toList(),
-            )),
-          ]),
-        ]),
-      ),
+      body: Obx(() => listview.separated12.builder(
+            controller.languages.length,
+            (context, index) {
+              final language = controller.languages[index];
+              final isSelected = controller.currentLanguage.value == language.code;
+
+              return row.white.p16.children([
+                text(language.name).f16.expanded.mk,
+                if (isSelected) Icons.check.icon.s24.primary.mk,
+              ]).click(
+                onTap: () => controller.changeLanguage(language.code),
+              );
+            },
+          )),
     );
-  }
-
-  Widget _buildSection(List<Widget> children) {
-    return column.children([
-      h12,
-      ...children,
-    ]);
-  }
-
-  Widget _buildMenuItem({
-    required IconData icon,
-    required String title,
-    required Widget trailing,
-    required VoidCallback onTap,
-    Color iconColor = Colors.blue,
-  }) {
-    return row.white.p16.children([
-      icon.icon.s24.color(iconColor).mk,
-      w12,
-      text(title).f16.expanded.mk,
-      trailing,
-    ]).click(onTap: onTap);
   }
 }

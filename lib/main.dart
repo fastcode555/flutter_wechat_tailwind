@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import 'app/routes/app_pages.dart';
 import 'app/themes/app_theme.dart';
+import 'app/translations/app_translations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
           getPages: AppPages.routes,
           locale: const Locale('zh', 'CN'),
           fallbackLocale: const Locale('en', 'US'),
+          translations: AppTranslation(),
           debugShowCheckedModeBanner: false,
         );
       },

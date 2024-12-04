@@ -11,7 +11,7 @@ class AuthView extends GetView<AuthController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: text('登录').f18.mk,
+        title: text('auth_title'.tr).f18.mk,
       ),
       body: SafeArea(
         child: SingleChildScrollView(

@@ -12,7 +12,7 @@ class ContactDetailView extends GetView<ContactDetailController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: text('联系人信息').f18.mk,
+        title: text('contacts_detail'.tr).f18.mk,
         actions: [
           Icons.more_horiz.icon.s24.grey.p12.mk,
         ],
@@ -27,42 +27,106 @@ class ContactDetailView extends GetView<ContactDetailController> {
               column.crossStart.expanded.children([
                 text(controller.contact.value.name).f18.bold.mk,
                 h8,
-                text('微信号: ${controller.contact.value.id}').f14.grey.mk,
+                text('contacts_wechat_id'.tr.trParams({
+                  'id': controller.contact.value.id,
+                })).f14.grey.mk,
               ]),
               Icons.qr_code.icon.s24.primary.mk,
             ]),
             h12,
 
             // 操作按钮
-            row.p16.spaceEvenly.children([
-              column.center.children([
-                Icons.chat_bubble_outline.icon.s32.primary.mk,
-                h8,
-                text('发消息').f14.mk,
-              ]).click(
-                onTap: () => Get.toNamed('/chat/detail/${controller.contact.value.id}'),
+            row.p16.children([
+              Expanded(
+                child: column.center.children([
+                  Icons.message.icon.s24.primary.mk,
+                  h8,
+                  text('contacts_send_message'.tr).f14.mk,
+                ]).click(onTap: () => controller.sendMessage()),
               ),
-              column.center.children([
-                Icons.videocam_outlined.icon.s32.blue.mk,
-                h8,
-                text('视频通话').f14.mk,
-              ]),
+              Expanded(
+                child: column.center.children([
+                  Icons.videocam.icon.s24.primary.mk,
+                  h8,
+                  text('contacts_video_call'.tr).f14.mk,
+                ]).click(onTap: () => controller.videoCall()),
+              ),
             ]),
             h12,
-            // 朋友圈
-            row.white.p16.children([
-              text('朋友圈').f16.expanded.mk,
-              Icons.chevron_right.icon.s24.grey.mk,
-            ]).click(onTap: () {}),
-            h12,
-            // 更多信息
-            row.white.p16.children([
-              text('更多信息').f16.expanded.mk,
-              Icons.chevron_right.icon.s24.grey.mk,
-            ]).click(onTap: () {}),
+
+            // 个人信息
+            _buildSection([
+              _buildInfoItem(
+                title: 'contacts_remark'.tr,
+                value: controller.contact.value.remark,
+                onTap: () => controller.editRemark(),
+              ),
+              _buildInfoItem(
+                title: 'contacts_region'.tr,
+                value: controller.contact.value.region,
+              ),
+              _buildInfoItem(
+                title: 'contacts_tags'.tr,
+                value: controller.contact.value.tags.join(', '),
+                onTap: () => controller.manageTags(),
+              ),
+            ]),
+
+            // 社交信息
+            _buildSection([
+              _buildInfoItem(
+                title: 'contacts_moments'.tr,
+                showArrow: true,
+                onTap: () => controller.viewMoments(),
+              ),
+            ]),
+
+            // 更多操作
+            _buildSection([
+              _buildInfoItem(
+                title: 'contacts_set_star'.tr,
+                trailing: Obx(
+                  () => Switch(
+                    value: controller.isStarred.value,
+                    onChanged: (value) => controller.toggleStar(),
+                  ),
+                ),
+              ),
+              _buildInfoItem(
+                title: 'contacts_block'.tr,
+                trailing: Obx(
+                  () => Switch(
+                    value: controller.isBlocked.value,
+                    onChanged: (value) => controller.toggleBlock(),
+                  ),
+                ),
+              ),
+            ]),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildSection(List<Widget> children) {
+    return column.children([
+      h12,
+      ...children,
+    ]);
+  }
+
+  Widget _buildInfoItem({
+    required String title,
+    String? value,
+    bool showArrow = false,
+    Widget? trailing,
+    VoidCallback? onTap,
+  }) {
+    return row.white.p16.children([
+      text(title).f16.expanded.mk,
+      if (value != null) text(value).f14.grey.mk,
+      if (trailing != null) trailing,
+      if (showArrow) Icons.chevron_right.icon.s24.grey.mk,
+    ]).click(onTap: onTap);
   }
 }

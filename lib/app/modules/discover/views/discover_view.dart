@@ -12,34 +12,34 @@ class DiscoverView extends GetView<DiscoverController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: text('发现').f18.mk,
+        title: text('nav_discover'.tr).f18.mk,
       ),
       body: SingleChildScrollView(
         child: column.children([
           _buildMenuItem(
             icon: Icons.photo_camera_outlined,
-            title: '朋友圈',
+            title: 'discover_moments'.tr,
             iconColor: Colors.blue,
             onTap: () => Get.toNamed(Routes.MOMENTS),
           ),
           h12,
           _buildMenuItem(
             icon: Icons.qr_code_scanner_outlined,
-            title: '扫一扫',
+            title: 'discover_scan'.tr,
             iconColor: Colors.green,
             onTap: () => Get.toNamed(Routes.SCAN),
           ),
           h12,
           _buildMenuItem(
             icon: Icons.search_outlined,
-            title: '搜一搜',
+            title: 'discover_shake'.tr,
             iconColor: Colors.orange,
             onTap: () => Get.toNamed(Routes.SEARCH),
           ),
           h12,
           _buildMenuItem(
             icon: Icons.apps_outlined,
-            title: '小程序',
+            title: 'discover_mini_programs'.tr,
             iconColor: Colors.purple,
             onTap: () => Get.toNamed(Routes.MINI_PROGRAMS),
           ),
@@ -54,13 +54,11 @@ class DiscoverView extends GetView<DiscoverController> {
     required VoidCallback onTap,
     Color iconColor = Colors.blue,
   }) {
-    return container.white.child(
-      row.p16.children([
-        icon.icon.s24.color(iconColor).mk,
-        w12,
-        text(title).f16.expanded.mk,
-        Icons.chevron_right.icon.s24.grey.mk,
-      ]),
-    ).click(onTap: onTap);
+    return row.white.p16.children([
+      icon.icon.s24.color(iconColor).mk,
+      w12,
+      text(title).f16.expanded.mk,
+      Icons.chevron_right.icon.s24.grey.mk,
+    ]).click(onTap: onTap);
   }
 }

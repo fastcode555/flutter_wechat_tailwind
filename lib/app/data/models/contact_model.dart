@@ -6,6 +6,8 @@ class ContactModel {
   final String? phone;
   final String pinyin;
   final String? remark;
+  final String? region;
+  final List<String> tags;
   final bool isStarred;
   final bool isBlocked;
 
@@ -17,6 +19,8 @@ class ContactModel {
     this.phone,
     required this.pinyin,
     this.remark,
+    this.region,
+    this.tags = const [],
     this.isStarred = false,
     this.isBlocked = false,
   });
@@ -30,6 +34,8 @@ class ContactModel {
       phone: json['phone'],
       pinyin: json['pinyin'],
       remark: json['remark'],
+      region: json['region'],
+      tags: List<String>.from(json['tags'] ?? []),
       isStarred: json['isStarred'] ?? false,
       isBlocked: json['isBlocked'] ?? false,
     );
@@ -44,6 +50,8 @@ class ContactModel {
       'phone': phone,
       'pinyin': pinyin,
       'remark': remark,
+      'region': region,
+      'tags': tags,
       'isStarred': isStarred,
       'isBlocked': isBlocked,
     };

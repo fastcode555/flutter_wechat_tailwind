@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tailwind/flutter_tailwind.dart';
 import 'package:flutter_wechat_tailwind/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,19 +9,19 @@ import '../models/setting_item_model.dart';
 class SettingsController extends GetxController {
   final accountSettings = <SettingItemModel>[
     SettingItemModel(
-      title: '账号与安全',
-      subtitle: '已开启账号保护',
+      title: 'settings_account_security',
+      subtitle: 'settings_account_security_subtitle',
       route: Routes.ACCOUNT_SECURITY,
     ),
   ].obs;
 
   final notificationSettings = <SettingItemModel>[
     SettingItemModel(
-      title: '新消息通知',
+      title: 'settings_notifications',
       route: Routes.NOTIFICATIONS,
     ),
     SettingItemModel(
-      title: '声音',
+      title: 'notifications_sound',
       isSwitch: true,
       switchValue: true,
       onSwitchChanged: (value) {
@@ -28,7 +29,7 @@ class SettingsController extends GetxController {
       },
     ),
     SettingItemModel(
-      title: '振动',
+      title: 'notifications_vibrate',
       isSwitch: true,
       switchValue: true,
       onSwitchChanged: (value) {
@@ -39,36 +40,36 @@ class SettingsController extends GetxController {
 
   final privacySettings = <SettingItemModel>[
     SettingItemModel(
-      title: '隐私',
+      title: 'settings_privacy',
       route: Routes.PRIVACY,
     ),
     SettingItemModel(
-      title: '朋友圈',
+      title: 'privacy_moments',
       route: Routes.PRIVACY_MOMENTS,
     ),
     SettingItemModel(
-      title: '黑名单',
+      title: 'privacy_blacklist',
       route: Routes.PRIVACY_BLACKLIST,
     ),
   ].obs;
 
   final generalSettings = <SettingItemModel>[
     SettingItemModel(
-      title: '多语言',
-      subtitle: '简体中文',
+      title: 'general_language',
+      subtitle: 'general_language_current',
       route: Routes.GENERAL_LANGUAGE,
     ),
     SettingItemModel(
-      title: '字体大小',
-      subtitle: '标准',
+      title: 'general_font_size',
+      subtitle: 'font_size_normal',
       route: Routes.GENERAL_FONT_SIZE,
     ),
     SettingItemModel(
-      title: '聊天背景',
+      title: 'general_chat_background',
       route: Routes.GENERAL_CHAT_BACKGROUND,
     ),
     SettingItemModel(
-      title: '清理存储空间',
+      title: 'general_storage',
       subtitle: '2.1 GB',
       route: Routes.GENERAL_STORAGE,
     ),
@@ -76,37 +77,36 @@ class SettingsController extends GetxController {
 
   final aboutSettings = <SettingItemModel>[
     SettingItemModel(
-      title: '帮助与反馈',
+      title: 'settings_help',
       route: Routes.HELP,
     ),
     SettingItemModel(
-      title: '关于微信',
-      subtitle: '版本 8.0.0',
+      title: 'settings_about',
+      subtitle: 'v8.0.0',
       route: Routes.ABOUT,
     ),
   ].obs;
 
   Future<void> logout() async {
-    final result = await Get.dialog(
+    final result = await Get.dialog<bool>(
       AlertDialog(
-        title: const Text('退出登录'),
-        content: const Text('确定要退出登录吗？'),
+        title: text('settings_logout'.tr).f18.mk,
+        content: text('settings_logout_confirm'.tr).f16.mk,
         actions: [
           TextButton(
             onPressed: () => Get.back(result: false),
-            child: const Text('取消'),
+            child: text('cancel'.tr).f16.mk,
           ),
           TextButton(
             onPressed: () => Get.back(result: true),
-            child: const Text('确定'),
+            child: text('confirm'.tr).f16.mk,
           ),
         ],
       ),
     );
 
     if (result == true) {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.clear();
+      // TODO: 实现退出登录逻辑
       Get.offAllNamed(Routes.AUTH);
     }
   }

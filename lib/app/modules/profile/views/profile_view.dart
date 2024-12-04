@@ -13,7 +13,7 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: text('我').f18.mk,
+        title: text('nav_me'.tr).f18.mk,
         actions: [
           Icons.settings_outlined.icon.s24.grey.p12.mk,
         ],
@@ -39,7 +39,7 @@ class ProfileView extends GetView<ProfileController> {
           // 支付
           _buildMenuItem(
             icon: Icons.account_balance_wallet_outlined,
-            title: '支付',
+            title: 'me_wallet'.tr,
             iconColor: Colors.red,
             onTap: () => Get.toNamed(Routes.WALLET),
           ),
@@ -48,28 +48,28 @@ class ProfileView extends GetView<ProfileController> {
           // 收藏和相册
           _buildMenuItem(
             icon: Icons.star_border_outlined,
-            title: '收藏',
+            title: 'me_favorites'.tr,
             iconColor: Colors.amber,
             onTap: () => Get.toNamed(Routes.FAVORITES),
           ),
           h12,
           _buildMenuItem(
             icon: Icons.photo_outlined,
-            title: '相册',
+            title: 'me_moments'.tr,
             iconColor: Colors.blue,
-            onTap: () => Get.toNamed(Routes.ALBUMS),
+            onTap: () => Get.toNamed(Routes.MOMENTS),
           ),
           h12,
           _buildMenuItem(
             icon: Icons.card_giftcard_outlined,
-            title: '卡包',
+            title: 'me_cards'.tr,
             iconColor: Colors.orange,
             onTap: () => Get.toNamed(Routes.CARDS),
           ),
           h12,
           _buildMenuItem(
             icon: Icons.emoji_emotions_outlined,
-            title: '表情',
+            title: 'me_stickers'.tr,
             iconColor: Colors.yellow,
             onTap: () => Get.toNamed(Routes.STICKERS),
           ),
@@ -78,7 +78,7 @@ class ProfileView extends GetView<ProfileController> {
           // 设置
           _buildMenuItem(
             icon: Icons.settings_outlined,
-            title: '设置',
+            title: 'me_settings'.tr,
             iconColor: Colors.grey,
             onTap: () => Get.toNamed(Routes.SETTINGS),
           ),

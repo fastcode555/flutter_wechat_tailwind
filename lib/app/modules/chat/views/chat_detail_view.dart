@@ -34,7 +34,7 @@ class ChatDetailView extends GetView<ChatDetailController> {
               child: TextField(
                 controller: controller.textController,
                 decoration: InputDecoration(
-                  hintText: '发送消息',
+                  hintText: 'chat_input_hint'.tr,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -48,7 +48,7 @@ class ChatDetailView extends GetView<ChatDetailController> {
             w12,
             Icons.add_circle_outline.icon.s24.primary.mk,
             w12,
-            '发送'.elevatedButton.white.click(onTap: controller.sendMessage),
+            'chat_send'.tr.elevatedButton.white.click(onTap: controller.sendMessage),
           ]),
         ),
       ]),

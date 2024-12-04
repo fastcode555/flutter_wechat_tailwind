@@ -1,3 +1,4 @@
+import 'package:flutter_wechat_tailwind/app/modules/contacts/models/new_friend_model.dart';
 import 'package:get/get.dart';
 
 class NewFriendsController extends GetxController {
@@ -14,7 +15,7 @@ class NewFriendsController extends GetxController {
     newFriends.value = List.generate(
       5,
       (index) => NewFriendModel(
-        id: index.toString(),
+        id: index,
         name: 'New Friend $index',
         message: '我是New Friend $index',
         isAccepted: index % 2 == 0,
@@ -22,7 +23,7 @@ class NewFriendsController extends GetxController {
     );
   }
 
-  Future<void> acceptFriend(String id) async {
+  Future<void> acceptFriend(int id) async {
     final index = newFriends.indexWhere((friend) => friend.id == id);
     if (index != -1) {
       final friend = newFriends[index];
@@ -35,17 +36,3 @@ class NewFriendsController extends GetxController {
     }
   }
 }
-
-class NewFriendModel {
-  final String id;
-  final String name;
-  final String message;
-  final bool isAccepted;
-
-  NewFriendModel({
-    required this.id,
-    required this.name,
-    required this.message,
-    required this.isAccepted,
-  });
-} 

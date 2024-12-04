@@ -24,14 +24,17 @@ class LanguageController extends GetxController {
   Future<void> _loadLanguage() async {
     final prefs = await SharedPreferences.getInstance();
     currentLanguage.value = prefs.getString(_languageKey) ?? 'zh_CN';
+    await updateLocale(currentLanguage.value);
   }
 
   Future<void> changeLanguage(String code) async {
     currentLanguage.value = code;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_languageKey, code);
+    await updateLocale(code);
+  }
 
-    // 更新应用语言
+  Future<void> updateLocale(String code) async {
     final locale = _getLocaleFromCode(code);
     Get.updateLocale(locale);
   }
@@ -39,6 +42,11 @@ class LanguageController extends GetxController {
   Locale _getLocaleFromCode(String code) {
     final parts = code.split('_');
     return Locale(parts[0], parts[1]);
+  }
+
+  String getLanguageName(String code) {
+    final language = languages.firstWhere((lang) => lang.code == code);
+    return language.name;
   }
 }
 

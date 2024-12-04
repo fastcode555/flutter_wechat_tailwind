@@ -28,7 +28,6 @@ import '../modules/settings/views/about_view.dart';
 import '../modules/settings/views/account_security_view.dart';
 import '../modules/settings/views/blacklist_view.dart';
 import '../modules/settings/views/font_size_view.dart';
-import '../modules/settings/views/general_view.dart';
 import '../modules/settings/views/help_view.dart';
 import '../modules/settings/views/language_view.dart';
 import '../modules/settings/views/notifications_view.dart';
@@ -148,11 +147,7 @@ class AppPages {
       page: () => const FontSizeView(),
       binding: FontSizeBinding(),
     ),
-    GetPage(
-      name: Routes.GENERAL,
-      page: () => const GeneralView(),
-      binding: SettingsBinding(),
-    ),
+
     GetPage(
       name: Routes.HELP,
       page: () => const HelpView(),

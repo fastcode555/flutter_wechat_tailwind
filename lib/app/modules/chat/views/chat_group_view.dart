@@ -10,7 +10,10 @@ class ChatGroupView extends GetView<ChatGroupController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: text(controller.groupName.value).f18.center.mk,
+        title: column.center.children([
+          text(controller.groupName.value).f18.mk,
+          text('${controller.memberCount.value} ${'chat_group_members'.tr}').f12.grey.mk,
+        ]),
         actions: [
           Icons.more_horiz.icon.s24.grey.p12.mk,
         ],
@@ -33,7 +36,7 @@ class ChatGroupView extends GetView<ChatGroupController> {
               child: TextField(
                 controller: controller.textController,
                 decoration: InputDecoration(
-                  hintText: '发送消息',
+                  hintText: 'chat_input_hint'.tr,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -47,7 +50,7 @@ class ChatGroupView extends GetView<ChatGroupController> {
             w12,
             Icons.add_circle_outline.icon.s24.primary.mk,
             w12,
-            '发送'.elevatedButton.white.click(onTap: controller.sendMessage),
+            'chat_send'.tr.elevatedButton.white.click(onTap: controller.sendMessage),
           ]),
         ),
       ]),
@@ -79,7 +82,7 @@ class GroupMessageBubble extends StatelessWidget {
         if (isMe)
           Align(
             alignment: Alignment.centerRight,
-            child: container.rounded16.p12.primary.child(
+            child: container.rounded16.p12.green.child(
               text(message.content).white.f14.mk,
             ),
           ),

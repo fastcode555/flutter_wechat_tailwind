@@ -13,7 +13,7 @@ class ContactsView extends GetView<ContactsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: text('通讯录').f18.mk,
+        title: text('nav_contacts'.tr).f18.mk,
         actions: [
           Icons.person_add_outlined.icon.s24.primary.p12.mk,
         ],
@@ -24,28 +24,28 @@ class ContactsView extends GetView<ContactsController> {
               if (index == 0) {
                 return _buildMenuItem(
                   icon: Icons.person_add,
-                  title: '新的朋友',
+                  title: 'contacts_new_friends'.tr,
                   iconColor: Colors.blue, // 新朋友用蓝色，表示社交
                   onTap: () => Get.toNamed(Routes.CONTACTS_NEW_FRIENDS),
                 );
               } else if (index == 1) {
                 return _buildMenuItem(
                   icon: Icons.group_add,
-                  title: '群聊',
+                  title: 'contacts_group_chats'.tr,
                   iconColor: Colors.green, // 群聊用绿色，表示群组
                   onTap: () => Get.toNamed(Routes.CONTACTS_GROUPS),
                 );
               } else if (index == 2) {
                 return _buildMenuItem(
                   icon: Icons.local_offer,
-                  title: '标签',
+                  title: 'contacts_tags'.tr,
                   iconColor: Colors.orange, // 标签用橙色，表示分类
                   onTap: () => Get.toNamed(Routes.CONTACTS_TAGS),
                 );
               } else if (index == 3) {
                 return _buildMenuItem(
                   icon: Icons.verified_user,
-                  title: '公众号',
+                  title: 'contacts_official_accounts'.tr,
                   iconColor: Colors.purple, // 公众号用紫色，表示官方
                   onTap: () => Get.toNamed(Routes.CONTACTS_OFFICIAL_ACCOUNTS),
                 );
