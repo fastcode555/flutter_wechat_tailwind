@@ -1,0 +1,45 @@
+part of 'app_pages.dart';
+
+class Routes {
+  static const HOME = '/';
+  static const AUTH = '/auth';
+  static const LOGIN = '/login';
+  static const CHAT = '/chat';
+  static const CHAT_DETAIL = '/chat/detail/:id';
+  static const CHAT_GROUP = '/chat/group/:id';
+  static const CONTACTS = '/contacts';
+  static const CONTACTS_DETAIL = '/contacts/detail/:id';
+  static const CONTACTS_NEW_FRIENDS = '/contacts/new-friends';
+  static const CONTACTS_GROUPS = '/contacts/groups';
+  static const CONTACTS_TAGS = '/contacts/tags';
+  static const CONTACTS_OFFICIAL_ACCOUNTS = '/contacts/official-accounts';
+  static const DISCOVER = '/discover';
+  static const MOMENTS = '/moments';
+  static const MOMENTS_DETAIL = '/moments/detail/:id';
+  static const SCAN = '/scan';
+  static const SEARCH = '/search';
+  static const MINI_PROGRAMS = '/mini-programs';
+  static const PROFILE = '/profile';
+  static const PROFILE_EDIT = '/profile/edit';
+  static const WALLET = '/wallet';
+  static const FAVORITES = '/favorites';
+  static const ALBUMS = '/albums';
+  static const CARDS = '/cards';
+  static const STICKERS = '/stickers';
+  static const SETTINGS = '/settings';
+  static const ACCOUNT_SECURITY = '/settings/account-security';
+  static const NOTIFICATIONS = '/settings/notifications';
+  static const PRIVACY = '/settings/privacy';
+  static const PRIVACY_MOMENTS = '/settings/privacy/moments';
+  static const PRIVACY_BLACKLIST = '/settings/privacy/blacklist';
+  static const GENERAL = '/settings/general';
+  static const GENERAL_LANGUAGE = '/settings/general/language';
+  static const GENERAL_FONT_SIZE = '/settings/general/font-size';
+  static const GENERAL_CHAT_BACKGROUND = '/settings/general/chat-background';
+  static const GENERAL_STORAGE = '/settings/general/storage';
+  static const ABOUT = '/settings/about';
+  static const HELP = '/settings/help';
+  static const HELP_FAQ = '/settings/help/faq';
+  static const HELP_FEEDBACK = '/settings/help/feedback';
+  static const HELP_COMPLAINT = '/settings/help/complaint';
+}
